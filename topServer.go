@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"html/template"
+	"log"
 	"net/http"
 	"os"
 	"os/exec"
@@ -54,7 +55,8 @@ func main() {
 		Handler: r,
 	}
 
-	server.ListenAndServe()
+	err := server.ListenAndServe()
+	log.Fatal(err)
 }
 
 func top(w http.ResponseWriter, r *http.Request) {
