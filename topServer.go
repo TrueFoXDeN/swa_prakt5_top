@@ -61,11 +61,21 @@ func main() {
 	log.Fatal(err)
 }
 
+func contains(s []string, e string) bool {
+	for _, a := range s {
+		if a == e {
+			return true
+		}
+	}
+	return false
+}
+
 func top(w http.ResponseWriter, r *http.Request) {
 	options, ok := r.URL.Query()["option"]
+	whitelist := []string{"PID", "%MEM", "%CPU", "TIME"}
 
 	var option string
-	if !ok || len(options[0]) < 1 {
+	if !ok || len(options[0]) < 1 && !contains(whitelist, options[0]) {
 		option = "pid"
 	} else {
 		// Query()["option"] will return an array of items,
