@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+	<link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+
+	<link rel="shortcut icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREQAAARABERERAAABEAEQAAAAAAEQARAAAAAAARABEAEREQABEREQEREREAAREQARAAEQAAAREBEAARAAABEQEQABEAAAERARAAEQAAAREBEAARAAABEQEREREAAAERABEREAAAAREAAAAAABEREREQAAAAERERERAAAAAAHwAAMB8AADP/AAAz/wAAMwcAAAIDAACGcwAA4nMAAOJzAADicwAA4nMAAOIDAADjBwAA4/8AAAB/AAAAfwAA">
+	<title>TOP -- Knowing your server's workload</title>
+
+	<script>
+		// reloads page every 5 seconds
+		setInterval(function(){
+			window.location = "/?option=" + document.getElementById("option").value;
+			}, 5000);
+	</script>
+</head>
+
+<body>
+	<header>
+		<h1>TOP -- Knowing your server's workload</h1>
+	</header>
+	
+	<p>
+		<label>Options: </label>
+		<select id="option">
+			<option value="PID" {{if eq .SelectedOption "PID"}} selected {{end}}>Sort by process ID</option>
+			<option value="%MEM" {{if eq .SelectedOption "%MEM"}} selected {{end}}>Sort by memory usage</option>
+			<option value="%CPU" {{if eq .SelectedOption "%CPU"}} selected {{end}}>Sort by CPU usage</option>
+			<option value="TIME" {{if eq .SelectedOption "TIME"}} selected {{end}}>Sort by the running time</option>
+		</select>
+	</p>
+
+	<p>
+		<small>
+			Page will be reloaded every five seconds...
+		</small>
+	</p>
+
+	<hr>
+
+	<p>
+		<h1>{{ .Hostname }}</h1>
+		<pre>
+			{{ .TopOutput }}
+		</pre>
+	</p>
+
+	<hr>
+
+	<footer>
+		<small><i>&copy; Copyright 2020, Luigi Lo Iacono</i></small>
+	</footer>
+</body>
+
+</html>
