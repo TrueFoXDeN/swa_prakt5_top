@@ -50,12 +50,14 @@ func main() {
 	// URL endpoints for HTML frontend
 	r.HandleFunc("/", top).Methods("GET")
 
-	server := http.Server{
-		Addr:    "localhost:8443",
-		Handler: r,
-	}
+	//server := http.Server{
+	//	Addr:    "localhost:8443",
+	//	Handler: r,
+	//}
 
-	err := server.ListenAndServe()
+	err := http.ListenAndServeTLS("localhost:8443",
+		"/etc/letsencrypt/live/ecs-80-158-58-79.reverse.open-telekom-cloud.com/fullchain.pem",
+		"/etc/letsencrypt/live/ecs-80-158-58-79.reverse.open-telekom-cloud.com/privkey.pem", r)
 	log.Fatal(err)
 }
 
